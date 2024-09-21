@@ -30,7 +30,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // Importa y define los modelos en el objeto db
-db.Libros = require('../models/libros.model.js')(sequelize, Sequelize);   // Modelo de libros
+
 db.Usuarios = require('../models/usuarios.model.js')(sequelize, Sequelize);  // Modelo de usuarios
 
 // Exporta el objeto db para usarlo en otras partes de la aplicación
