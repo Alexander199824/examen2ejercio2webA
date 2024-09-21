@@ -14,11 +14,8 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
       rejectUnauthorized: false // No rechazar conexiones no autorizadas (útil para ciertos entornos)
     }
   },
-  //operatorsAliases: false, // Desactiva alias de operadores para seguridad
-
-  // Configuración del pool de conexiones
   pool: {
-    max: env.max, // Número máximo de conexiones en el pool
+    max: env.pool.max, // Número máximo de conexiones en el pool
     min: env.pool.min, // Número mínimo de conexiones en el pool
     acquire: env.pool.acquire, // Tiempo máximo de espera para adquirir una conexión
     idle: env.pool.idle, // Tiempo máximo que una conexión puede estar inactiva
@@ -30,12 +27,11 @@ const db = {};
 
 // Almacena la clase Sequelize en el objeto db
 db.Sequelize = Sequelize;
-// Almacena la instancia de conexión de Sequelize en el objeto db
 db.sequelize = sequelize;
 
 // Importa y define los modelos en el objeto db
-db.Libros = require('../models/usuarios.model.js')(sequelize, Sequelize);
-
+db.Libros = require('../models/libros.model.js')(sequelize, Sequelize);   // Modelo de libros
+db.Usuarios = require('../models/usuarios.model.js')(sequelize, Sequelize);  // Modelo de usuarios
 
 // Exporta el objeto db para usarlo en otras partes de la aplicación
 module.exports = db;
